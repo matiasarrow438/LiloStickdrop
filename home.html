@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilo & Stitch 2 CTO 🚀</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('images/stitch.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px;
+        }
+        .header {
+            margin-top: 20px;
+        }
+        .content-box {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gif-container {
+            margin: 0;
+        }
+        .gif-container img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .countdown {
+            font-size: 2em;
+            margin: 0;
+            padding: 20px;
+            background: none;
+        }
+        .links {
+            margin: 20px 0;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            margin: 10px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            border: none;
+        }
+        .button:hover {
+            transform: scale(1.1);
+        }
+        .button.dexscreener {
+            background: #1c1c1c;
+        }
+        .button.telegram {
+            background: #26A5E4;
+        }
+        .button.kick {
+            background: #53FC18;
+            color: black;
+        }
+        .button.discord {
+            background: #5865F2;
+        }
+        .button.twitter {
+            background: #1DA1F2;
+        }
+        .ca-box {
+            background: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0;
+        }
+        .copy-button {
+            background: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .copy-button:hover {
+            background: #45a049;
+        }
+        .toast {
+            visibility: hidden;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1e90ff;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .toast.show {
+            visibility: visible;
+            animation: fadeIn 0.5s, fadeOut 0.5s 1.5s;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes fadeOut {
+            from {opacity: 1;}
+            to {opacity: 0;}
+        }
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1e90ff;  /* Solid dodger blue background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+        .loading-gif {
+            width: 300px;  /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
+        }
+        .loading-text {
+            color: #1e90ff;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 2px solid #1e90ff;
+        }
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <img src="images/gif.gif" alt="Loading Animation" class="loading-gif">
+        <div class="loading-text">
+            Ohana means family… and family means we pump together! 🚀💰
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header content-box">
+            <h1>🌺 $Stitch Movie Token 🏄‍♂️</h1>
+            <p>Ohana means family, and family means nobody gets left behind... or forgotten!</p>
+        </div>
+
+        <div class="content-box">
+            <div class="countdown" id="countdown">
+                <h2>Movie Release Countdown</h2>
+                <div id="timer"></div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="ca-box">
+                <h3>Contract Address</h3>
+                <p id="contract-address">0x... [Your Contract Address Here]</p>
+                <button class="copy-button" onclick="copyCA()">Copy Address</button>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="links">
+                <a href="https://dexscreener.com/[Your-Token-Link]" class="button dexscreener" target="_blank">DexScreener</a>
+                <a href="https://t.me/[Your-Telegram-Link]" class="button telegram" target="_blank">Telegram</a>
+                <a href="https://kick.com/rolandgates" class="button kick" target="_blank">Kick</a>
+                <a href="https://discord.gg/7GysybgmMe" class="button discord" target="_blank">Discord</a>
+                <a href="https://x.com/RealStitchCoin" class="button twitter" target="_blank">Twitter</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        Address copied to clipboard!
+    </div>
+
+    <script>
+        // Add this at the start of your script section
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.add('fade-out');
+            }, 2000); // Shows loading screen for 2 seconds
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const releaseDate = new Date('May 23, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = releaseDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerHTML = 
+                days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Contract Address Copy Function
+        function copyCA() {
+            const ca = document.getElementById('contract-address').innerText;
+            navigator.clipboard.writeText(ca);
+            const toast = document.getElementById('toast');
+            toast.className = "toast show";
+            setTimeout(() => {
+                toast.className = "toast";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+        
