@@ -36,12 +36,17 @@
         }
         .countdown {
             text-align: center;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        .countdown h2 {
+            color: #1e90ff;
         }
         .countdown #timer {
             font-size: 3.5rem;
             font-weight: bold;
             color: #1e90ff;
             margin-top: 15px;
+            text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
         }
         .ca-box {
             text-align: center;
@@ -138,6 +143,11 @@
         @keyframes fadeOut {
             from {opacity: 1;}
             to {opacity: 0;}
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
         .loading-screen {
             position: fixed;
