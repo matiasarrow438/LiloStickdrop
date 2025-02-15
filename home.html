@@ -201,13 +201,17 @@
         }
         /* Mobile responsive styles */
         @media screen and (max-width: 768px) {
+            body {
+                position: relative;
+            }
+            
             .container {
-                margin-top: 320px;  /* Add space for top image */
-                margin-bottom: 320px;  /* Add space for bottom image */
+                margin-top: 320px;
+                margin-bottom: 320px;
             }
             
             .stitch-left-img {
-                position: fixed;
+                position: absolute;  /* Changed from fixed */
                 top: 0;
                 left: 50%;
                 transform: translateX(-50%);
@@ -217,9 +221,9 @@
             }
             
             .theatres-img {
-                position: fixed;
+                position: absolute;  /* Changed from fixed */
                 bottom: 0;
-                top: auto;  /* Override the top positioning */
+                top: auto;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 90%;
