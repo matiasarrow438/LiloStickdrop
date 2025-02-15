@@ -198,21 +198,33 @@
         .stitch-left-img {
             left: 100px;
             max-width: 700px;
-            mix-blend-mode: multiply;
         }
         /* Mobile responsive styles */
         @media screen and (max-width: 768px) {
-            .theatres-img, .stitch-left-img {
-                position: static;
-                transform: none;
-                width: 90%;
-                max-width: 300px;
-                margin: 20px auto;
-                display: block;
+            .container {
+                margin-top: 320px;  /* Add space for top image */
+                margin-bottom: 320px;  /* Add space for bottom image */
             }
             
             .stitch-left-img {
-                order: -1;  /* Show at top of page */
+                position: fixed;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+                margin: 10px auto;
+            }
+            
+            .theatres-img {
+                position: fixed;
+                bottom: 0;
+                top: auto;  /* Override the top positioning */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+                margin: 10px auto;
             }
         }
     </style>
