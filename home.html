@@ -241,6 +241,54 @@
                 margin: 10px auto;
             }
         }
+        /* Add audio player styling */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(30, 144, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #1e90ff;
+            box-shadow: 0 0 20px rgba(30, 144, 255, 0.4),
+                        inset 0 0 15px rgba(30, 144, 255, 0.2);
+            backdrop-filter: blur(5px);
+            transform: scale(0.9);
+            width: 150px;
+        }
+        .audio-player audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+        }
+        /* Hide all controls except play and volume */
+        audio::-webkit-media-controls-enclosure {
+            border-radius: 5px;
+            background: rgba(30, 144, 255, 0.2);
+        }
+        audio::-webkit-media-controls-panel {
+            background: rgba(30, 144, 255, 0.2) !important;
+        }
+        audio::-webkit-media-controls-timeline,
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display,
+        audio::-webkit-media-controls-playback-speed-button,
+        audio::-webkit-media-controls-overflow-button,
+        audio::-webkit-media-controls-overflow-menu-list {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-volume-slider,
+        audio::-webkit-media-controls-mute-button {
+            filter: brightness(1.5);
+        }
+        .audio-player:hover {
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -300,6 +348,13 @@
         Address copied to clipboard!
     </div>
 
+    <div class="audio-player">
+        <audio controls loop autoplay muted>
+            <source src="audio/song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
     <script>
         // Add this at the start of your script section
         window.addEventListener('load', function() {
@@ -336,6 +391,34 @@
                 toast.className = "toast";
             }, 2000);
         }
+
+        // More aggressive autoplay handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.querySelector('audio');
+            
+            // Try to play immediately
+            audio.muted = false;
+            let playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Autoplay started successfully
+                    audio.muted = false;
+                })
+                .catch(error => {
+                    // Auto-play was prevented
+                    // Show a "Click to Play" overlay or handle it as needed
+                    console.log("Playback prevented:", error);
+                });
+            }
+            
+            // Also try to play on first user interaction with the page
+            document.addEventListener('click', function initAudioOnFirstClick() {
+                audio.muted = false;
+                audio.play();
+                document.removeEventListener('click', initAudioOnFirstClick);
+            }, { once: true });
+        });
     </script>
 </body>
 </html>
